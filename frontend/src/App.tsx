@@ -4,6 +4,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Home from "./Home/Home";
 import Products from "./Products/Products";
+import data from './Products/data';
 
 function App() {
     const openMenu = () => {
@@ -45,15 +46,28 @@ function App() {
                 <button className="sidebar-close-button" onClick={closeMenu}>
                   x
                   </button>
-                <ul>
+                <ul className="products">
+                  {data.products.map((product) => (
                     <li>
-                        <a href="index.html">Pants</a>
-                    </li>
-
-                    <li>
-                        <a href="index.html">Shirts</a>
-                    </li>
-                </ul>
+                        <div className="product">
+                          <img
+                          className="product-image"
+                          src={product.imageUrl}
+                          alt="product"
+                          />
+                          <div className="product-name">
+                            <a href="product.html">{product.name}</a>
+                            </div>
+                            <div className="product-brand">{product.brand}</div>
+                            <div className="product-price">{product.price}</div>
+                            <div className="product-rating">
+                              {product.rating} Stars ({product.numberOfReviews} reviews)
+                            </div>
+                          </div>
+                         </li>
+                  ))}
+                  ;
+                  </ul>
             </aside>
             <main className="main">
               <Routes>
